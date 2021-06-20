@@ -1,0 +1,761 @@
+--- FAIL: TestTrees (0.00s)
+    --- FAIL: TestTrees/CLIArg (0.00s)
+        --- FAIL: TestTrees/CLIArg/command (0.00s)
+            api_test.go:309: expected tree: (*getoptions.programTree)({
+                  Type: (getoptions.argType) 1,
+                  Name: (string) (len=4) "cmd1",
+                  Children: ([]*getoptions.programTree) (len=3) {
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 2,
+                      Name: (string) (len=8) "rootopt1",
+                      Children: ([]*getoptions.programTree) {
+                      },
+                      Parent: (*getoptions.programTree)({
+                        Type: (getoptions.argType) 0,
+                        Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                        Children: ([]*getoptions.programTree) (len=3) {
+                          (*getoptions.programTree)(<already shown>),
+                          (*getoptions.programTree)(<already shown>),
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 1,
+                            Name: (string) (len=4) "cmd2",
+                            Children: ([]*getoptions.programTree) (len=2) {
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)({
+                                Type: (getoptions.argType) 2,
+                                Name: (string) (len=8) "cmd2opt1",
+                                Children: ([]*getoptions.programTree) {
+                                },
+                                Parent: (*getoptions.programTree)(<already shown>),
+                                Level: (int) 0,
+                                option: (getoptions.option) {
+                                  Aliases: ([]string) <nil>,
+                                  Args: ([]string) <nil>,
+                                  Called: (bool) false,
+                                  CalledAs: (string) "",
+                                  Min: (int) 0,
+                                  Max: (int) 0
+                                },
+                                command: (getoptions.command) {
+                                  CommandFn: (getoptions.CommandFn) <nil>
+                                }
+                              })
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 1,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          })
+                        },
+                        Parent: (*getoptions.programTree)(<nil>),
+                        Level: (int) 0,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      }),
+                      Level: (int) 0,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    }),
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 2,
+                      Name: (string) (len=8) "cmd1opt1",
+                      Children: ([]*getoptions.programTree) {
+                      },
+                      Parent: (*getoptions.programTree)(<already shown>),
+                      Level: (int) 0,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    }),
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 1,
+                      Name: (string) (len=8) "sub1cmd1",
+                      Children: ([]*getoptions.programTree) (len=3) {
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=8) "rootopt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)({
+                            Type: (getoptions.argType) 0,
+                            Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                            Children: ([]*getoptions.programTree) (len=3) {
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)({
+                                Type: (getoptions.argType) 1,
+                                Name: (string) (len=4) "cmd2",
+                                Children: ([]*getoptions.programTree) (len=2) {
+                                  (*getoptions.programTree)(<already shown>),
+                                  (*getoptions.programTree)({
+                                    Type: (getoptions.argType) 2,
+                                    Name: (string) (len=8) "cmd2opt1",
+                                    Children: ([]*getoptions.programTree) {
+                                    },
+                                    Parent: (*getoptions.programTree)(<already shown>),
+                                    Level: (int) 0,
+                                    option: (getoptions.option) {
+                                      Aliases: ([]string) <nil>,
+                                      Args: ([]string) <nil>,
+                                      Called: (bool) false,
+                                      CalledAs: (string) "",
+                                      Min: (int) 0,
+                                      Max: (int) 0
+                                    },
+                                    command: (getoptions.command) {
+                                      CommandFn: (getoptions.CommandFn) <nil>
+                                    }
+                                  })
+                                },
+                                Parent: (*getoptions.programTree)(<already shown>),
+                                Level: (int) 1,
+                                option: (getoptions.option) {
+                                  Aliases: ([]string) <nil>,
+                                  Args: ([]string) <nil>,
+                                  Called: (bool) false,
+                                  CalledAs: (string) "",
+                                  Min: (int) 0,
+                                  Max: (int) 0
+                                },
+                                command: (getoptions.command) {
+                                  CommandFn: (getoptions.CommandFn) <nil>
+                                }
+                              })
+                            },
+                            Parent: (*getoptions.programTree)(<nil>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          }),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        }),
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=8) "cmd1opt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)(<already shown>),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        }),
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=12) "sub1cmd1opt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)(<already shown>),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        })
+                      },
+                      Parent: (*getoptions.programTree)(<already shown>),
+                      Level: (int) 2,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    })
+                  },
+                  Parent: (*getoptions.programTree)({
+                    Type: (getoptions.argType) 0,
+                    Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                    Children: ([]*getoptions.programTree) (len=3) {
+                      (*getoptions.programTree)({
+                        Type: (getoptions.argType) 2,
+                        Name: (string) (len=8) "rootopt1",
+                        Children: ([]*getoptions.programTree) {
+                        },
+                        Parent: (*getoptions.programTree)(<already shown>),
+                        Level: (int) 0,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      }),
+                      (*getoptions.programTree)(<already shown>),
+                      (*getoptions.programTree)({
+                        Type: (getoptions.argType) 1,
+                        Name: (string) (len=4) "cmd2",
+                        Children: ([]*getoptions.programTree) (len=2) {
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 2,
+                            Name: (string) (len=8) "rootopt1",
+                            Children: ([]*getoptions.programTree) {
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          }),
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 2,
+                            Name: (string) (len=8) "cmd2opt1",
+                            Children: ([]*getoptions.programTree) {
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          })
+                        },
+                        Parent: (*getoptions.programTree)(<already shown>),
+                        Level: (int) 1,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      })
+                    },
+                    Parent: (*getoptions.programTree)(<nil>),
+                    Level: (int) 0,
+                    option: (getoptions.option) {
+                      Aliases: ([]string) <nil>,
+                      Args: ([]string) <nil>,
+                      Called: (bool) false,
+                      CalledAs: (string) "",
+                      Min: (int) 0,
+                      Max: (int) 0
+                    },
+                    command: (getoptions.command) {
+                      CommandFn: (getoptions.CommandFn) <nil>
+                    }
+                  }),
+                  Level: (int) 1,
+                  option: (getoptions.option) {
+                    Aliases: ([]string) <nil>,
+                    Args: ([]string) <nil>,
+                    Called: (bool) false,
+                    CalledAs: (string) "",
+                    Min: (int) 0,
+                    Max: (int) 0
+                  },
+                  command: (getoptions.command) {
+                    CommandFn: (getoptions.CommandFn) <nil>
+                  }
+                })
+                
+                 got: (*getoptions.programTree)({
+                  Type: (getoptions.argType) 1,
+                  Name: (string) (len=4) "cmd1",
+                  Children: ([]*getoptions.programTree) (len=3) {
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 2,
+                      Name: (string) (len=8) "rootopt1",
+                      Children: ([]*getoptions.programTree) {
+                      },
+                      Parent: (*getoptions.programTree)({
+                        Type: (getoptions.argType) 0,
+                        Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                        Children: ([]*getoptions.programTree) (len=4) {
+                          (*getoptions.programTree)(<already shown>),
+                          (*getoptions.programTree)(<already shown>),
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 1,
+                            Name: (string) (len=4) "cmd2",
+                            Children: ([]*getoptions.programTree) (len=2) {
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)({
+                                Type: (getoptions.argType) 2,
+                                Name: (string) (len=8) "cmd2opt1",
+                                Children: ([]*getoptions.programTree) {
+                                },
+                                Parent: (*getoptions.programTree)(<already shown>),
+                                Level: (int) 0,
+                                option: (getoptions.option) {
+                                  Aliases: ([]string) <nil>,
+                                  Args: ([]string) <nil>,
+                                  Called: (bool) false,
+                                  CalledAs: (string) "",
+                                  Min: (int) 0,
+                                  Max: (int) 0
+                                },
+                                command: (getoptions.command) {
+                                  CommandFn: (getoptions.CommandFn) <nil>
+                                }
+                              })
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 1,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          }),
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 3,
+                            Name: (string) (len=3) "txt",
+                            Children: ([]*getoptions.programTree) {
+                            },
+                            Parent: (*getoptions.programTree)(<nil>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) {
+                              },
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          })
+                        },
+                        Parent: (*getoptions.programTree)(<nil>),
+                        Level: (int) 0,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      }),
+                      Level: (int) 0,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    }),
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 2,
+                      Name: (string) (len=8) "cmd1opt1",
+                      Children: ([]*getoptions.programTree) {
+                      },
+                      Parent: (*getoptions.programTree)(<already shown>),
+                      Level: (int) 0,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    }),
+                    (*getoptions.programTree)({
+                      Type: (getoptions.argType) 1,
+                      Name: (string) (len=8) "sub1cmd1",
+                      Children: ([]*getoptions.programTree) (len=3) {
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=8) "rootopt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)({
+                            Type: (getoptions.argType) 0,
+                            Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                            Children: ([]*getoptions.programTree) (len=4) {
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)(<already shown>),
+                              (*getoptions.programTree)({
+                                Type: (getoptions.argType) 1,
+                                Name: (string) (len=4) "cmd2",
+                                Children: ([]*getoptions.programTree) (len=2) {
+                                  (*getoptions.programTree)(<already shown>),
+                                  (*getoptions.programTree)({
+                                    Type: (getoptions.argType) 2,
+                                    Name: (string) (len=8) "cmd2opt1",
+                                    Children: ([]*getoptions.programTree) {
+                                    },
+                                    Parent: (*getoptions.programTree)(<already shown>),
+                                    Level: (int) 0,
+                                    option: (getoptions.option) {
+                                      Aliases: ([]string) <nil>,
+                                      Args: ([]string) <nil>,
+                                      Called: (bool) false,
+                                      CalledAs: (string) "",
+                                      Min: (int) 0,
+                                      Max: (int) 0
+                                    },
+                                    command: (getoptions.command) {
+                                      CommandFn: (getoptions.CommandFn) <nil>
+                                    }
+                                  })
+                                },
+                                Parent: (*getoptions.programTree)(<already shown>),
+                                Level: (int) 1,
+                                option: (getoptions.option) {
+                                  Aliases: ([]string) <nil>,
+                                  Args: ([]string) <nil>,
+                                  Called: (bool) false,
+                                  CalledAs: (string) "",
+                                  Min: (int) 0,
+                                  Max: (int) 0
+                                },
+                                command: (getoptions.command) {
+                                  CommandFn: (getoptions.CommandFn) <nil>
+                                }
+                              }),
+                              (*getoptions.programTree)({
+                                Type: (getoptions.argType) 3,
+                                Name: (string) (len=3) "txt",
+                                Children: ([]*getoptions.programTree) {
+                                },
+                                Parent: (*getoptions.programTree)(<nil>),
+                                Level: (int) 0,
+                                option: (getoptions.option) {
+                                  Aliases: ([]string) <nil>,
+                                  Args: ([]string) {
+                                  },
+                                  Called: (bool) false,
+                                  CalledAs: (string) "",
+                                  Min: (int) 0,
+                                  Max: (int) 0
+                                },
+                                command: (getoptions.command) {
+                                  CommandFn: (getoptions.CommandFn) <nil>
+                                }
+                              })
+                            },
+                            Parent: (*getoptions.programTree)(<nil>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          }),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        }),
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=8) "cmd1opt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)(<already shown>),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        }),
+                        (*getoptions.programTree)({
+                          Type: (getoptions.argType) 2,
+                          Name: (string) (len=12) "sub1cmd1opt1",
+                          Children: ([]*getoptions.programTree) {
+                          },
+                          Parent: (*getoptions.programTree)(<already shown>),
+                          Level: (int) 0,
+                          option: (getoptions.option) {
+                            Aliases: ([]string) <nil>,
+                            Args: ([]string) <nil>,
+                            Called: (bool) false,
+                            CalledAs: (string) "",
+                            Min: (int) 0,
+                            Max: (int) 0
+                          },
+                          command: (getoptions.command) {
+                            CommandFn: (getoptions.CommandFn) <nil>
+                          }
+                        })
+                      },
+                      Parent: (*getoptions.programTree)(<already shown>),
+                      Level: (int) 2,
+                      option: (getoptions.option) {
+                        Aliases: ([]string) <nil>,
+                        Args: ([]string) <nil>,
+                        Called: (bool) false,
+                        CalledAs: (string) "",
+                        Min: (int) 0,
+                        Max: (int) 0
+                      },
+                      command: (getoptions.command) {
+                        CommandFn: (getoptions.CommandFn) <nil>
+                      }
+                    })
+                  },
+                  Parent: (*getoptions.programTree)({
+                    Type: (getoptions.argType) 0,
+                    Name: (string) (len=47) "/tmp/go-build4053293609/b001/go-getoptions.test",
+                    Children: ([]*getoptions.programTree) (len=4) {
+                      (*getoptions.programTree)({
+                        Type: (getoptions.argType) 2,
+                        Name: (string) (len=8) "rootopt1",
+                        Children: ([]*getoptions.programTree) {
+                        },
+                        Parent: (*getoptions.programTree)(<already shown>),
+                        Level: (int) 0,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      }),
+                      (*getoptions.programTree)(<already shown>),
+                      (*getoptions.programTree)({
+                        Type: (getoptions.argType) 1,
+                        Name: (string) (len=4) "cmd2",
+                        Children: ([]*getoptions.programTree) (len=2) {
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 2,
+                            Name: (string) (len=8) "rootopt1",
+                            Children: ([]*getoptions.programTree) {
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          }),
+                          (*getoptions.programTree)({
+                            Type: (getoptions.argType) 2,
+                            Name: (string) (len=8) "cmd2opt1",
+                            Children: ([]*getoptions.programTree) {
+                            },
+                            Parent: (*getoptions.programTree)(<already shown>),
+                            Level: (int) 0,
+                            option: (getoptions.option) {
+                              Aliases: ([]string) <nil>,
+                              Args: ([]string) <nil>,
+                              Called: (bool) false,
+                              CalledAs: (string) "",
+                              Min: (int) 0,
+                              Max: (int) 0
+                            },
+                            command: (getoptions.command) {
+                              CommandFn: (getoptions.CommandFn) <nil>
+                            }
+                          })
+                        },
+                        Parent: (*getoptions.programTree)(<already shown>),
+                        Level: (int) 1,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) <nil>,
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      }),
+                      (*getoptions.programTree)({
+                        Type: (getoptions.argType) 3,
+                        Name: (string) (len=3) "txt",
+                        Children: ([]*getoptions.programTree) {
+                        },
+                        Parent: (*getoptions.programTree)(<nil>),
+                        Level: (int) 0,
+                        option: (getoptions.option) {
+                          Aliases: ([]string) <nil>,
+                          Args: ([]string) {
+                          },
+                          Called: (bool) false,
+                          CalledAs: (string) "",
+                          Min: (int) 0,
+                          Max: (int) 0
+                        },
+                        command: (getoptions.command) {
+                          CommandFn: (getoptions.CommandFn) <nil>
+                        }
+                      })
+                    },
+                    Parent: (*getoptions.programTree)(<nil>),
+                    Level: (int) 0,
+                    option: (getoptions.option) {
+                      Aliases: ([]string) <nil>,
+                      Args: ([]string) <nil>,
+                      Called: (bool) false,
+                      CalledAs: (string) "",
+                      Min: (int) 0,
+                      Max: (int) 0
+                    },
+                    command: (getoptions.command) {
+                      CommandFn: (getoptions.CommandFn) <nil>
+                    }
+                  }),
+                  Level: (int) 1,
+                  option: (getoptions.option) {
+                    Aliases: ([]string) <nil>,
+                    Args: ([]string) <nil>,
+                    Called: (bool) false,
+                    CalledAs: (string) "",
+                    Min: (int) 0,
+                    Max: (int) 0
+                  },
+                  command: (getoptions.command) {
+                    CommandFn: (getoptions.CommandFn) <nil>
+                  }
+                })
+                
+    api_test.go:316: 
+FAIL
+exit status 1
+FAIL	github.com/DavidGamba/go-getoptions/go-getoptions	0.016s
