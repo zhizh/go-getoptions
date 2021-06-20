@@ -1,3 +1,11 @@
+// This file is part of go-getoptions.
+//
+// Copyright (C) 2015-2021  David Gamba Rios
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 package getoptions
 
 import (
@@ -18,6 +26,7 @@ var isOptionRegexWindows = regexp.MustCompile(`^(--?|/)([^=:]+)(.*?)$`)
 type optionPair struct {
 	Option string
 	// We allow multiple args in case of splitting on comma.
+	// TODO: Verify where we are handling integer ranges (1..10) and maybe move that logic here as well.
 	Args []string
 }
 
@@ -40,7 +49,7 @@ func isOption(s string, mode Mode, windows bool) ([]optionPair, bool) {
 	if s == "--" {
 		// Option parsing termination (--) is not identified by isOption as an option.
 		// It is the caller's responsibility.
-		return []optionPair{}, false
+		return []optionPair{{Option: "--"}}, false
 	} else if s == "-" {
 		return []optionPair{{Option: "-"}}, true
 	}

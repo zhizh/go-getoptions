@@ -1,3 +1,11 @@
+// This file is part of go-getoptions.
+//
+// Copyright (C) 2015-2021  David Gamba Rios
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 package getoptions
 
 import (
@@ -17,9 +25,9 @@ func TestIsOption(t *testing.T) {
 		{"lone dash", "-", Bundling, []optionPair{{Option: "-"}}, true},
 		{"lone dash", "-", SingleDash, []optionPair{{Option: "-"}}, true},
 
-		{"double dash", "--", Normal, []optionPair{}, false},
-		{"double dash", "--", Bundling, []optionPair{}, false},
-		{"double dash", "--", SingleDash, []optionPair{}, false},
+		{"double dash", "--", Normal, []optionPair{{Option: "--"}}, false},
+		{"double dash", "--", Bundling, []optionPair{{Option: "--"}}, false},
+		{"double dash", "--", SingleDash, []optionPair{{Option: "--"}}, false},
 
 		{"no option", "opt", Normal, []optionPair{}, false},
 		{"no option", "opt", Bundling, []optionPair{}, false},
@@ -58,6 +66,10 @@ func TestIsOption(t *testing.T) {
 		{"Long option with arg", "/opt=arg", Normal, []optionPair{{Option: "opt", Args: []string{"arg"}}}, true},
 		{"Long option with arg", "/opt=arg", Bundling, []optionPair{{Option: "opt", Args: []string{"arg"}}}, true},
 		{"Long option with arg", "/opt=arg", SingleDash, []optionPair{{Option: "opt", Args: []string{"arg"}}}, true},
+
+		{"short option with arg", "-opt:arg", Normal, []optionPair{{Option: "opt", Args: []string{"arg"}}}, true},
+		{"short option with arg", "-opt:arg", Bundling, []optionPair{{Option: "o"}, {Option: "p"}, {Option: "t", Args: []string{"arg"}}}, true},
+		{"short option with arg", "-opt:arg", SingleDash, []optionPair{{Option: "o", Args: []string{"pt:arg"}}}, true},
 
 		{"Edge case", "/opt:=arg", Normal, []optionPair{{Option: "opt", Args: []string{"=arg"}}}, true},
 		{"Edge case", "/opt:=arg", Bundling, []optionPair{{Option: "opt", Args: []string{"=arg"}}}, true},
