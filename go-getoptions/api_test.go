@@ -67,17 +67,81 @@ func TestAPI(t *testing.T) {
 			}()},
 			{"lonesome dash", []string{"cmd1", "sub2cmd1", "-"}, Normal, func() *programTree {
 				tree := setupOpt().programTree
-				sub2cmd1, err := getNode(tree, "cmd1", "sub2cmd1")
+				n, err := getNode(tree, "cmd1", "sub2cmd1")
 				if err != nil {
-					t.Fatalf("unexpected error: %s, %s", err, sub2cmd1.Str())
+					t.Fatalf("unexpected error: %s, %s", err, n.Str())
 				}
-				opt, ok := sub2cmd1.ChildOptions["-"]
+				opt, ok := n.ChildOptions["-"]
 				if !ok {
-					t.Fatalf("not found: %s", sub2cmd1.Str())
+					t.Fatalf("not found: %s", n.Str())
 				}
 				opt.Called = true
 				opt.UsedAlias = "-"
-				return sub2cmd1
+				return n
+			}()},
+			{"root option to command", []string{"cmd1", "--rootopt1"}, Normal, func() *programTree {
+				tree := setupOpt().programTree
+				n, err := getNode(tree, "cmd1")
+				if err != nil {
+					t.Fatalf("unexpected error: %s, %s", err, n.Str())
+				}
+				opt, ok := n.ChildOptions["rootopt1"]
+				if !ok {
+					t.Fatalf("not found: %s", n.Str())
+				}
+				opt.Called = true
+				opt.UsedAlias = "rootopt1"
+				return n
+			}()},
+			{"root option to subcommand", []string{"cmd1", "sub2cmd1", "--rootopt1"}, Normal, func() *programTree {
+				tree := setupOpt().programTree
+				n, err := getNode(tree, "cmd1", "sub2cmd1")
+				if err != nil {
+					t.Fatalf("unexpected error: %s, %s", err, n.Str())
+				}
+				opt, ok := n.ChildOptions["rootopt1"]
+				if !ok {
+					t.Fatalf("not found: %s", n.Str())
+				}
+				opt.Called = true
+				opt.UsedAlias = "rootopt1"
+				return n
+			}()},
+			{"option to subcommand", []string{"cmd1", "sub1cmd1", "--sub1cmd1opt1=hello"}, Normal, func() *programTree {
+				tree := setupOpt().programTree
+				n, err := getNode(tree, "cmd1", "sub1cmd1")
+				if err != nil {
+					t.Fatalf("unexpected error: %s, %s", err, n.Str())
+				}
+				opt, ok := n.ChildOptions["sub1cmd1opt1"]
+				if !ok {
+					t.Fatalf("not found: %s", n.Str())
+				}
+				opt.Called = true
+				opt.UsedAlias = "sub1cmd1opt1"
+				err = opt.Save("hello")
+				if err != nil {
+					t.Fatalf("unexpected error: %s", err)
+				}
+				return n
+			}()},
+			{"option to subcommand", []string{"cmd1", "sub1cmd1", "--sub1cmd1opt1", "hello"}, Normal, func() *programTree {
+				tree := setupOpt().programTree
+				n, err := getNode(tree, "cmd1", "sub1cmd1")
+				if err != nil {
+					t.Fatalf("unexpected error: %s, %s", err, n.Str())
+				}
+				opt, ok := n.ChildOptions["sub1cmd1opt1"]
+				if !ok {
+					t.Fatalf("not found: %s", n.Str())
+				}
+				opt.Called = true
+				opt.UsedAlias = "sub1cmd1opt1"
+				err = opt.Save("hello")
+				if err != nil {
+					t.Fatalf("unexpected error: %s", err)
+				}
+				return n
 			}()},
 			// {"command", []string{"--opt1", "cmd1", "--cmd1opt1"}, Normal, &programTree{
 			// 	Type:   argTypeProgname,
@@ -169,7 +233,7 @@ func TestAPI(t *testing.T) {
 				tree := setupOpt().programTree
 				argTree, _, err := parseCLIArgs(false, tree, test.args, test.mode)
 				if err != nil {
-					t.Errorf("unexpected error")
+					t.Errorf("unexpected error: %s", err)
 				}
 				if !reflect.DeepEqual(test.expected, argTree) {
 					t.Errorf("expected tree, got: %s %s\n", SpewToFile(t, test.expected, "expected"), SpewToFile(t, argTree, "got"))

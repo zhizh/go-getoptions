@@ -7,6 +7,7 @@ import (
 
 	"github.com/DavidGamba/go-getoptions/option"
 	"github.com/DavidGamba/go-getoptions/sliceiterator"
+	"github.com/DavidGamba/go-getoptions/text"
 )
 
 type programTree struct {
@@ -43,7 +44,7 @@ func (n *programTree) Str() string {
 		sort.Strings(keys)
 		out += ", child options: [\n"
 		for _, k := range keys {
-			out += padding(level+1) + fmt.Sprintf("Name: %s, Aliases %v\n", n.ChildOptions[k].Name, n.ChildOptions[k].Aliases)
+			out += padding(level+1) + fmt.Sprintf("Name: %s, Aliases: %v, Values: %v\n", n.ChildOptions[k].Name, n.ChildOptions[k].Aliases, n.ChildOptions[k].Value())
 		}
 		out += padding(level) + "]"
 	} else {
@@ -214,19 +215,50 @@ ARGS_LOOP:
 			// iterate over the possible cli args and try matching against expectations
 			for _, p := range optPair {
 				matches := 0
-				for _, c := range currentProgramNode.ChildOptions {
+				for _, cOpt := range currentProgramNode.ChildOptions {
 					// handle full option match
 					// TODO: handle partial matches
-					if _, ok := stringSliceIndex(c.Aliases, p.Option); ok {
-						c.Called = true
-						c.UsedAlias = p.Option
-						err := c.Save(p.Args...)
+					if _, ok := stringSliceIndex(cOpt.Aliases, p.Option); ok {
+						cOpt.Called = true
+						cOpt.UsedAlias = p.Option
+						err := cOpt.Save(p.Args...)
 						if err != nil {
-							// TODO: This shouldn't happen, figure out what to do about it.
-							Logger.Println("this shouldn't happen")
+							return currentProgramNode, &[]string{}, err
 						}
 						matches++
 						// TODO: Handle option having a minimum bigger than 1
+
+						// Validate minimum
+						i := 0
+						for ; i < cOpt.MinArgs; i++ {
+							if !iterator.ExistsNext() && !cOpt.IsOptional {
+								return currentProgramNode, &[]string{}, fmt.Errorf(text.ErrorMissingArgument, cOpt.UsedAlias)
+							}
+							iterator.Next()
+							if _, is := isOption(iterator.Value(), mode, false); is && !cOpt.IsOptional {
+								return currentProgramNode, &[]string{}, fmt.Errorf(text.ErrorArgumentWithDash, cOpt.UsedAlias)
+							}
+							err := cOpt.Save(iterator.Value())
+							if err != nil {
+								return currentProgramNode, &[]string{}, err
+							}
+						}
+						// Run maximun
+						for ; i < cOpt.MaxArgs; i++ {
+							if !iterator.ExistsNext() {
+								break
+							}
+							value, _ := iterator.PeekNextValue()
+							if _, is := isOption(value, mode, false); is {
+								break
+							}
+							iterator.Next()
+							err := cOpt.Save(iterator.Value())
+							if err != nil {
+								return currentProgramNode, &[]string{}, err
+							}
+						}
+
 					}
 				}
 				if matches > 1 {
