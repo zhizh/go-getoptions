@@ -1,6 +1,7 @@
 package getoptions
 
 import (
+	"errors"
 	"fmt"
 	"sort"
 	"strings"
@@ -9,6 +10,8 @@ import (
 	"github.com/DavidGamba/go-getoptions/sliceiterator"
 	"github.com/DavidGamba/go-getoptions/text"
 )
+
+var ErrorMissingArgument = errors.New("")
 
 type programTree struct {
 	Type          argType
@@ -116,7 +119,8 @@ type command struct {
 
 // TODO: Make this a method of tree so we can add parent information.
 // Maybe not a good idea? Would it complicate testing?
-func newCLIOption(parent *programTree, name string, args ...string) *option.Option {
+// newUnknownCLIOption - attaches a new CLI option to the parent that is labelled as unknown for later handling.
+func newUnknownCLIOption(parent *programTree, name string, args ...string) *option.Option {
 	data := []string{}
 	data = append(data, args...)
 	arg := option.New(name, option.StringRepeatType, &data)
@@ -190,12 +194,12 @@ ARGS_LOOP:
 					continue ARGS_LOOP
 				}
 			}
-			opt := newCLIOption(currentProgramNode, "-")
+			opt := newUnknownCLIOption(currentProgramNode, "-")
 			currentProgramNode.ChildOptions["-"] = opt
 			continue ARGS_LOOP
 		}
 
-		// TODO: Handle unknonw option.
+		// TODO: Handle unknown option.
 		// It basically needs to be copied down to the command every time we find a command and it has to be validated against aliases and option name.
 		// If we were to check on require order and other modes without doing that work, passing --help after passing an unknown option would return an unknown option error and it would be annoying to the user.
 
@@ -212,6 +216,7 @@ ARGS_LOOP:
 		// parents so it marks them as an unkonw option that needs to be used at a
 		// different level. It is as if it was ignoring getoptions.Pass.
 		if optPair, is := isOption(iterator.Value(), mode, false); is {
+
 			// iterate over the possible cli args and try matching against expectations
 			for _, p := range optPair {
 				matches := 0
@@ -229,20 +234,23 @@ ARGS_LOOP:
 						// TODO: Handle option having a minimum bigger than 1
 
 						// Validate minimum
-						i := 0
+						i := len(p.Args) // if the value is part of the option, for example --opt=value then the minimum of 1 is already met.
 						for ; i < cOpt.MinArgs; i++ {
 							if !iterator.ExistsNext() && !cOpt.IsOptional {
-								return currentProgramNode, &[]string{}, fmt.Errorf(text.ErrorMissingArgument, cOpt.UsedAlias)
+								err := fmt.Errorf(text.ErrorMissingArgument+"%w", cOpt.UsedAlias, ErrorMissingArgument)
+								return currentProgramNode, &[]string{}, err
 							}
 							iterator.Next()
 							if _, is := isOption(iterator.Value(), mode, false); is && !cOpt.IsOptional {
-								return currentProgramNode, &[]string{}, fmt.Errorf(text.ErrorArgumentWithDash, cOpt.UsedAlias)
+								err := fmt.Errorf(text.ErrorArgumentWithDash+"%w", cOpt.UsedAlias, ErrorMissingArgument)
+								return currentProgramNode, &[]string{}, err
 							}
 							err := cOpt.Save(iterator.Value())
 							if err != nil {
 								return currentProgramNode, &[]string{}, err
 							}
 						}
+
 						// Run maximun
 						for ; i < cOpt.MaxArgs; i++ {
 							if !iterator.ExistsNext() {
@@ -261,20 +269,23 @@ ARGS_LOOP:
 
 					}
 				}
+
 				if matches > 1 {
 					// TODO: handle ambiguous option call error
 					continue
 				}
+
 				if matches == 0 {
 					// TODO: This is a new option, add it as a children and mark it as unknown
 					// TODO: This shouldn't append new children but update existing ones and isOption needs to be able to check if the option expects a follow up argument.
 					// Check min, check max and keep ingesting until something starts with `-` or matches a command.
 
-					opt := newCLIOption(currentProgramNode, p.Option, p.Args...)
+					opt := newUnknownCLIOption(currentProgramNode, p.Option, p.Args...)
 					currentProgramNode.ChildOptions[p.Option] = opt
 				}
+
 			}
-			continue
+			continue ARGS_LOOP
 		}
 
 		// When handling options out of order, iterate over all possible options for all the children and set them if they match.
