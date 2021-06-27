@@ -151,6 +151,8 @@ func parseCLIArgs(completionMode bool, tree *programTree, args []string, mode Mo
 		args = []string{}
 	}
 
+	Logger.Printf("parseCLIArgs args: %v, mode: %v\n", args, mode)
+
 	currentProgramNode := tree
 
 	iterator := sliceiterator.New(&args)
