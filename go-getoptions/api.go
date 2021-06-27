@@ -162,12 +162,21 @@ ARGS_LOOP:
 
 		// We only generate completions when we reached the end of the provided args
 		if completionMode && iterator.IsLast() {
+			comps := &[]string{}
 			// TODO: check what was the behaviour when you have a space and hit the tab completion.
 
 			// TODO: Handle completions
 			// We check to see if this is the last arg and act on that one.
 			if iterator.Value() == "-" || iterator.Value() == "--" {
 				// Provide option completions
+				for k := range currentProgramNode.ChildOptions {
+					if k != "-" {
+						k = "--" + k
+					}
+					*comps = append(*comps, k)
+				}
+				sort.Strings(*comps)
+				return currentProgramNode, comps, nil
 			}
 			if strings.HasPrefix(iterator.Value(), "-") {
 				// Provide option completions
