@@ -373,17 +373,23 @@ func TestParseCLIArgsCompletions(t *testing.T) {
 
 		{"command", []string{"cmd"}, Normal, &[]string{"cmd1", "cmd2"}, nil},
 
-		{"command", []string{"cmd1"}, Normal, &[]string{"cmd1 "}, nil},
+		{"command", []string{"cmd1"}, Normal, &[]string{"cmd1"}, nil},
 
 		{"command", []string{"cmd1", ""}, Normal, &[]string{"sub1cmd1", "sub2cmd1"}, nil},
 
 		{"command", []string{"cmd1", "sub"}, Normal, &[]string{"sub1cmd1", "sub2cmd1"}, nil},
 
-		{"command", []string{"cmd1", "sub1"}, Normal, &[]string{"sub1cmd1 "}, nil},
+		{"command", []string{"cmd1", "sub1"}, Normal, &[]string{"sub1cmd1"}, nil},
 
 		{"text to command", []string{"cmd1", "txt"}, Normal, &[]string{}, nil},
 
 		{"text to sub command", []string{"cmd1", "sub1cmd1", "txt"}, Normal, &[]string{}, nil},
+
+		{"option", []string{"-"}, Normal, &[]string{"--rootopt1"}, nil},
+
+		{"option", []string{"--"}, Normal, &[]string{"--rootopt1"}, nil},
+
+		{"option", []string{"--r"}, Normal, &[]string{"--rootopt1"}, nil},
 
 		{"option with arg", []string{"--rootopt1=hello"}, Normal, &[]string{}, nil},
 

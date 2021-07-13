@@ -164,23 +164,31 @@ ARGS_LOOP:
 		// We only generate completions when we reached the end of the provided args
 		if completionMode && (iterator.IsLast() || len(args) == 0) {
 			comps := &[]string{}
-			// TODO: check what was the behaviour when you have a space and hit the tab completion.
 
-			// TODO: Handle completions
-			// We check to see if this is the last arg and act on that one.
-			if iterator.Value() == "-" || iterator.Value() == "--" {
-				// Provide option completions
-				for k := range currentProgramNode.ChildOptions {
-					if k != "-" {
-						k = "--" + k
+			// Options
+			{
+				if strings.HasPrefix(iterator.Value(), "-") {
+					// Options are stored without leading dashes, remove them to compare
+					// TODO: Also remove the / when dealing with windows.
+					value := strings.TrimPrefix(strings.TrimPrefix(iterator.Value(), "-"), "-")
+					for k := range currentProgramNode.ChildOptions {
+						// handle lonesome dash
+						if k == "-" && iterator.Value() == "-" {
+							*comps = append(*comps, k)
+						} else if strings.HasPrefix(k, value) {
+							if currentProgramNode.ChildOptions[k].OptType != option.BoolType {
+								*comps = append(*comps, "--"+k+"=")
+							} else {
+								*comps = append(*comps, "--"+k)
+							}
+						}
 					}
-					*comps = append(*comps, k)
+					sort.Strings(*comps)
+					// if len(*comps) == 1 && strings.HasSuffix((*comps)[0], "=") {
+					// 	*comps = append(*comps, "")
+					// }
+					return currentProgramNode, comps, nil
 				}
-				sort.Strings(*comps)
-				return currentProgramNode, comps, nil
-			}
-			if strings.HasPrefix(iterator.Value(), "-") {
-				// Provide option completions
 			}
 
 			// Commands
@@ -190,10 +198,6 @@ ARGS_LOOP:
 					if strings.HasPrefix(k, iterator.Value()) {
 						*comps = append(*comps, k)
 					}
-				}
-				// If there is a single command add a space at the end of the completion
-				if len(*comps) == 1 {
-					(*comps)[0] = (*comps)[0] + " "
 				}
 
 				sort.Strings(*comps)

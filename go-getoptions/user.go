@@ -15,6 +15,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/DavidGamba/go-getoptions/option"
@@ -111,8 +112,16 @@ func (gopt *GetOpt) StringVar(p *string, name, def string, fns ...ModifyFn) {
 func (gopt *GetOpt) Parse(args []string) ([]string, error) {
 	compLine := os.Getenv("COMP_LINE")
 	if compLine != "" {
-		Logger.Printf("COMP_LINE: %s\n", compLine)
-		_, completions, err := parseCLIArgs(true, gopt.programTree, args, Normal)
+		// COMP_LINE has a single trailing space when the completion isn't complete and 2 when it is
+		// Only pass an empty arg to parse when we have 2 trailing spaces indicating we are ready for the next completion.
+		re := regexp.MustCompile(`\s+`)
+		compLineParts := re.Split(compLine, -1)
+		if !strings.HasSuffix(compLine, "  ") {
+			compLineParts = compLineParts[:len(compLineParts)-1]
+		}
+		Logger.SetPrefix("\n")
+		Logger.Printf("COMP_LINE: '%s', parts: %#v, args: %#v\n", compLine, compLineParts, args)
+		_, completions, err := parseCLIArgs(true, gopt.programTree, compLineParts, Normal)
 		if err != nil {
 			return nil, err
 		}
