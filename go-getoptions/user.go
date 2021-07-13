@@ -113,12 +113,17 @@ func (gopt *GetOpt) Parse(args []string) ([]string, error) {
 	compLine := os.Getenv("COMP_LINE")
 	if compLine != "" {
 		// COMP_LINE has a single trailing space when the completion isn't complete and 2 when it is
-		// Only pass an empty arg to parse when we have 2 trailing spaces indicating we are ready for the next completion.
 		re := regexp.MustCompile(`\s+`)
 		compLineParts := re.Split(compLine, -1)
-		if !strings.HasSuffix(compLine, "  ") {
+		// Drop the trailing "" part if the second argument is not "". COMP_LINE alone isn't enough to tell if we are triggering a completion or not.
+		if len(compLineParts) > 0 && compLineParts[len(compLineParts)-1] == "" && len(args) > 2 && args[1] != "" {
 			compLineParts = compLineParts[:len(compLineParts)-1]
 		}
+		// Only pass an empty arg to parse when we have 2 trailing spaces indicating we are ready for the next completion.
+		// if !strings.HasSuffix(compLine, "  ") && len(compLineParts) > 0 && compLineParts[len(compLineParts)-1] == "" {
+		// 	compLineParts = compLineParts[:len(compLineParts)-1]
+		// }
+		// In some cases, the first completion only gets one space
 		Logger.SetPrefix("\n")
 		Logger.Printf("COMP_LINE: '%s', parts: %#v, args: %#v\n", compLine, compLineParts, args)
 		_, completions, err := parseCLIArgs(true, gopt.programTree, compLineParts, Normal)

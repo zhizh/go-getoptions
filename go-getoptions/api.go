@@ -173,9 +173,13 @@ ARGS_LOOP:
 					value := strings.TrimPrefix(strings.TrimPrefix(iterator.Value(), "-"), "-")
 					for k := range currentProgramNode.ChildOptions {
 						// handle lonesome dash
-						if k == "-" && iterator.Value() == "-" {
-							*comps = append(*comps, k)
-						} else if strings.HasPrefix(k, value) {
+						if k == "-" {
+							if iterator.Value() == "-" {
+								*comps = append(*comps, k)
+							}
+							continue
+						}
+						if strings.HasPrefix(k, value) {
 							if currentProgramNode.ChildOptions[k].OptType != option.BoolType {
 								*comps = append(*comps, "--"+k+"=")
 							} else {
@@ -201,6 +205,10 @@ ARGS_LOOP:
 				}
 
 				sort.Strings(*comps)
+				// Add trailing space to force next completion, makes for nicer UI when there is a single result.
+				if len(*comps) == 1 {
+					(*comps)[0] = (*comps)[0] + " "
+				}
 				return currentProgramNode, comps, nil
 			}
 
