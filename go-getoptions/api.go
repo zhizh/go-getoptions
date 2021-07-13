@@ -158,10 +158,11 @@ func parseCLIArgs(completionMode bool, tree *programTree, args []string, mode Mo
 	iterator := sliceiterator.New(&args)
 
 ARGS_LOOP:
-	for iterator.Next() {
+	for iterator.Next() ||
+		(completionMode && len(args) == 0) { // enter at least once if running in completion mode.
 
 		// We only generate completions when we reached the end of the provided args
-		if completionMode && iterator.IsLast() {
+		if completionMode && (iterator.IsLast() || len(args) == 0) {
 			comps := &[]string{}
 			// TODO: check what was the behaviour when you have a space and hit the tab completion.
 
@@ -181,9 +182,27 @@ ARGS_LOOP:
 			if strings.HasPrefix(iterator.Value(), "-") {
 				// Provide option completions
 			}
-			// Iterate over commands and check prefix to see if we offer command completion
+
+			// Commands
+			{
+				// Iterate over commands and check prefix to see if we offer command completion
+				for k := range currentProgramNode.ChildCommands {
+					if strings.HasPrefix(k, iterator.Value()) {
+						*comps = append(*comps, k)
+					}
+				}
+				// If there is a single command add a space at the end of the completion
+				if len(*comps) == 1 {
+					(*comps)[0] = (*comps)[0] + " "
+				}
+
+				sort.Strings(*comps)
+				return currentProgramNode, comps, nil
+			}
 
 			// Provide other kinds of completions, like file completions.
+
+			break ARGS_LOOP
 		}
 
 		// handle terminator

@@ -341,17 +341,18 @@ func TestParseCLIArgs(t *testing.T) {
 			}
 		})
 
-		t.Run("completion "+test.name, func(t *testing.T) {
-			logTestOutput := setupTestLogging(t)
-			defer logTestOutput()
-
-			tree := setupOpt().programTree
-			_, comps, err := parseCLIArgs(true, tree, test.args, test.mode)
-			checkError(t, err, test.err)
-			if !reflect.DeepEqual(test.completions, comps) {
-				t.Fatalf("expected completions: \n%v\n got: \n%v\n", test.completions, comps)
-			}
-		})
+		// This might be too annoying to maintain
+		// t.Run("completion "+test.name, func(t *testing.T) {
+		// 	logTestOutput := setupTestLogging(t)
+		// 	defer logTestOutput()
+		//
+		// 	tree := setupOpt().programTree
+		// 	_, comps, err := parseCLIArgs(true, tree, test.args, test.mode)
+		// 	checkError(t, err, test.err)
+		// 	if !reflect.DeepEqual(test.completions, comps) {
+		// 		t.Fatalf("expected completions: \n%v\n got: \n%v\n", test.completions, comps)
+		// 	}
+		// })
 	}
 }
 
@@ -364,13 +365,21 @@ func TestParseCLIArgsCompletions(t *testing.T) {
 		err         error
 	}{
 
-		{"empty", nil, Normal, &[]string{}, nil},
+		{"empty", nil, Normal, &[]string{"cmd1", "cmd2"}, nil},
 
-		{"empty", []string{}, Normal, &[]string{}, nil},
+		{"empty", []string{}, Normal, &[]string{"cmd1", "cmd2"}, nil},
 
 		{"text", []string{"txt"}, Normal, &[]string{}, nil},
 
-		{"command", []string{"cmd1"}, Normal, &[]string{}, nil},
+		{"command", []string{"cmd"}, Normal, &[]string{"cmd1", "cmd2"}, nil},
+
+		{"command", []string{"cmd1"}, Normal, &[]string{"cmd1 "}, nil},
+
+		{"command", []string{"cmd1", ""}, Normal, &[]string{"sub1cmd1", "sub2cmd1"}, nil},
+
+		{"command", []string{"cmd1", "sub"}, Normal, &[]string{"sub1cmd1", "sub2cmd1"}, nil},
+
+		{"command", []string{"cmd1", "sub1"}, Normal, &[]string{"sub1cmd1 "}, nil},
 
 		{"text to command", []string{"cmd1", "txt"}, Normal, &[]string{}, nil},
 
