@@ -10,14 +10,24 @@ package getoptions
 
 import (
 	"context"
+	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/DavidGamba/go-getoptions/option"
 )
 
 var Logger = log.New(ioutil.Discard, "DEBUG: ", log.Ldate|log.Ltime|log.Lshortfile)
+
+// exitFn - This variable allows to test os.Exit calls
+var exitFn = os.Exit
+
+// completionWriter - Writer where the completion results will be written to.
+// Set as a variable to allow for easy testing.
+var completionWriter io.Writer = os.Stdout
 
 type GetOpt struct {
 	programTree *programTree
@@ -89,15 +99,25 @@ func (gopt *GetOpt) NewCommand(name string, description string) *GetOpt {
 }
 
 func (gopt *GetOpt) String(name, def string, fns ...ModifyFn) *string {
-	n := option.New(name, option.StringType, &def)
-	gopt.programTree.ChildOptions[name] = n
-
-	// for _, fn := range fns {
-	// 	fn(opt)
-	// }
-
-	return nil
+	gopt.StringVar(&def, name, def, fns...)
+	return &def
 }
 
 func (gopt *GetOpt) StringVar(p *string, name, def string, fns ...ModifyFn) {
+	n := option.New(name, option.StringType, &def)
+	gopt.programTree.ChildOptions[name] = n
+}
+
+func (gopt *GetOpt) Parse(args []string) ([]string, error) {
+	compLine := os.Getenv("COMP_LINE")
+	if compLine != "" {
+		Logger.Printf("COMP_LINE: %s\n", compLine)
+		_, completions, err := parseCLIArgs(true, gopt.programTree, args, Normal)
+		if err != nil {
+			return nil, err
+		}
+		fmt.Fprintln(completionWriter, strings.Join(*completions, "\n"))
+		exitFn(124) // programmable completion restarts from the beginning, with an attempt to find a new compspec for that command.
+	}
+	return nil, nil
 }
