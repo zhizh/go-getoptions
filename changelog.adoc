@@ -524,8 +524,8 @@ For example:
 As the releases before, this release has 100% test coverage.
 
 === Fix `go tip` case sensitive import path
-
-	davidgamba -> DavidGamba
+ 
+	davidgamba -> DavidGamba -> zhizh
 
 === Deprecate and rename redundant methods
 
