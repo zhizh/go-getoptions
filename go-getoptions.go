@@ -22,10 +22,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/DavidGamba/go-getoptions/completion"
-	"github.com/DavidGamba/go-getoptions/help"
-	"github.com/DavidGamba/go-getoptions/option"
-	"github.com/DavidGamba/go-getoptions/text"
+	"github.com/zhizh/go-getoptions/completion"
+	"github.com/zhizh/go-getoptions/help"
+	"github.com/zhizh/go-getoptions/option"
+	"github.com/zhizh/go-getoptions/text"
 )
 
 // Debug Logger instance set to `ioutil.Discard` by default.
