@@ -7,10 +7,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/DavidGamba/go-getoptions"
-	gitlog "github.com/DavidGamba/go-getoptions/examples/mygit/log"
-	gitshow "github.com/DavidGamba/go-getoptions/examples/mygit/show"
-	gitslow "github.com/DavidGamba/go-getoptions/examples/mygit/slow"
+	"github.com/zhizh/go-getoptions"
+	gitlog "github.com/zhizh/go-getoptions/examples/mygit/log"
+	gitshow "github.com/zhizh/go-getoptions/examples/mygit/show"
+	gitslow "github.com/zhizh/go-getoptions/examples/mygit/slow"
 )
 
 var logger = log.New(ioutil.Discard, "", log.LstdFlags)

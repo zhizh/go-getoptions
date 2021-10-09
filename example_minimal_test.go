@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DavidGamba/go-getoptions" // As getoptions
+	"github.com/zhizh/go-getoptions" // As getoptions
 )
 
 func ExampleGetOpt_Alias() {

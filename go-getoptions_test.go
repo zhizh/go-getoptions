@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DavidGamba/go-getoptions/option"
-	"github.com/DavidGamba/go-getoptions/text"
+	"github.com/zhizh/go-getoptions/option"
+	"github.com/zhizh/go-getoptions/text"
 )
 
 func firstDiff(got, expected string) string {
@@ -688,7 +688,7 @@ func TestGetOptAliases(t *testing.T) {
 	}
 
 	// Bug: Startup panic when alias matches the beginning of preexisting option
-	// https://github.com/DavidGamba/go-getoptions/issues/1
+	// https://github.com/zhizh/go-getoptions/issues/1
 	opt = New()
 	opt.Bool("fleg", false)
 	opt.Bool("flag", false, opt.Alias("f"))

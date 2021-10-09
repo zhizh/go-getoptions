@@ -1,3 +1,3 @@
-module github.com/DavidGamba/go-getoptions/test/completion/test
+module github.com/zhizh/go-getoptions/test/completion/test
 
 go 1.12

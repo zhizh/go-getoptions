@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/DavidGamba/go-getoptions/text"
+	"github.com/zhizh/go-getoptions/text"
 )
 
 func TestOption(t *testing.T) {

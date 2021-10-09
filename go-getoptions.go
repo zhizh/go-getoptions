@@ -375,7 +375,7 @@ func (gopt *GetOpt) setOption(opts ...*option.Option) *GetOpt {
 //
 //     |===
 //
-// See https://github.com/DavidGamba/go-getoptions#operation_modes for more details.
+// See https://github.com/zhizh/go-getoptions#operation_modes for more details.
 func (gopt *GetOpt) SetMode(mode Mode) *GetOpt {
 	gopt.mode = mode
 	return gopt

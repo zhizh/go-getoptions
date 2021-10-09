@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/DavidGamba/go-getoptions/option"
+	"github.com/zhizh/go-getoptions/option"
 )
 
 func firstDiff(got, expected string) string {

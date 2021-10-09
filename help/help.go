@@ -17,8 +17,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DavidGamba/go-getoptions/option"
-	"github.com/DavidGamba/go-getoptions/text"
+	"github.com/zhizh/go-getoptions/option"
+	"github.com/zhizh/go-getoptions/text"
 )
 
 // Indentation - Number of spaces used for indentation.

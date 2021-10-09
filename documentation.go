@@ -13,7 +13,7 @@ GetOpt::Long.
 It will operate on any given slice of strings and return the remaining (non
 used) command line arguments. This allows to easily subcommand.
 
-See https://github.com/DavidGamba/go-getoptions for extra documentation details.
+See https://github.com/zhizh/go-getoptions for extra documentation details.
 
 Features
 
@@ -21,7 +21,7 @@ Features
 
 • Support for `--long` options.
 
-• Support for short (`-s`) options with flexible behaviour (see https://github.com/DavidGamba/go-getoptions#operation_modes for details):
+• Support for short (`-s`) options with flexible behaviour (see https://github.com/zhizh/go-getoptions#operation_modes for details):
 
  - Normal (default)
  - Bundling

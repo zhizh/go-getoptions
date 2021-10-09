@@ -112,7 +112,7 @@ In particular The `errors.Is` and `errors.As` features greatly simplify error te
 
 Introduces a new Directed Acyclic Graph Build System.
 
-The build system is a separate import package: `import "github.com/DavidGamba/go-getoptions/dag"`
+The build system is a separate import package: `import "github.com/zhizh/go-getoptions/dag"`
 
 Documentation can be found in its own link:./dag/README.adoc[README].
 
@@ -298,7 +298,7 @@ Additionally, actually use the variable, before it was hardcoded to "help".
 As the releases before, this release has 100% test coverage.
 
 This release keeps on the work of removing the kinks around subcommands.
-An example showing subcommands can be found in https://github.com/DavidGamba/go-getoptions/tree/master/examples/mygit[./examples/mygit].
+An example showing subcommands can be found in https://github.com/zhizh/go-getoptions/tree/master/examples/mygit[./examples/mygit].
 
 It also introduces the use of context to propagate cancelation signals, etc. to the child commands.
 
@@ -343,7 +343,7 @@ Updating:
 === New Features
 
 * Introduce `opt.InterruptContext()`, a helper that returns a top level context that captures interrupt signals (`os.Interrupt`, `syscall.SIGHUP`, `syscall.SIGTERM`).
-An example can be found in https://github.com/DavidGamba/go-getoptions/tree/master/examples/mygit[./examples/mygit].
+An example can be found in https://github.com/zhizh/go-getoptions/tree/master/examples/mygit[./examples/mygit].
 
 == v0.16.0 Feature release
 
@@ -410,7 +410,7 @@ https://github.com/golang/go/issues/27299
 As the releases before, this release has 100% test coverage.
 
 This release introduces bash completion by default and works out many kinks around subcommands.
-An example showing subcommands can be found in https://github.com/DavidGamba/go-getoptions/tree/master/examples/mygit[./examples/mygit].
+An example showing subcommands can be found in https://github.com/zhizh/go-getoptions/tree/master/examples/mygit[./examples/mygit].
 
 === Breaking changes
 

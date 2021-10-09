@@ -17,7 +17,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DavidGamba/go-getoptions/text"
+	"github.com/zhizh/go-getoptions/text"
 )
 
 // Debug Logger instance set to `ioutil.Discard` by default.

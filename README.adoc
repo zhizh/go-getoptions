@@ -7,7 +7,7 @@ David Gamba, https://github.com/DavidGamba
 
 Go option parser inspired on the flexibility of Perl’s GetOpt::Long.
 
-image:https://pkg.go.dev/badge/github.com/DavidGamba/go-getoptions.svg["Go Reference", link="https://pkg.go.dev/github.com/DavidGamba/go-getoptions"]
+image:https://pkg.go.dev/badge/github.com/zhizh/go-getoptions.svg["Go Reference", link="https://pkg.go.dev/github.com/zhizh/go-getoptions"]
 image:https://travis-ci.org/DavidGamba/go-getoptions.svg?branch=master["Build Status", link="https://travis-ci.org/DavidGamba/go-getoptions"]
 image:https://codecov.io/github/DavidGamba/go-getoptions/coverage.svg?branch=master["Coverage via Codecov", link="https://codecov.io/github/DavidGamba/go-getoptions?branch=release"]
 
@@ -28,7 +28,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/DavidGamba/go-getoptions"
+	"github.com/zhizh/go-getoptions"
 )
 
 var logger = log.New(ioutil.Discard, "DEBUG: ", log.LstdFlags)
@@ -297,11 +297,11 @@ When mixed with Pass through, it also stops parsing arguments when the first unm
 
 . Get it from github:
 +
-`go get github.com/DavidGamba/go-getoptions`
+`go get github.com/zhizh/go-getoptions`
 
 . Then import it:
 +
-`import "github.com/DavidGamba/go-getoptions" // As getoptions`
+`import "github.com/zhizh/go-getoptions" // As getoptions`
 
 . Enjoy!
 
@@ -313,7 +313,7 @@ Only the last two versions of Go will be supported.
 
 == Introduction
 
-NOTE: For a <<quick_overview>>, jump to that section in the TOC or review the http://godoc.org/github.com/DavidGamba/go-getoptions[GoDoc Documentation].
+NOTE: For a <<quick_overview>>, jump to that section in the TOC or review the http://godoc.org/github.com/zhizh/go-getoptions[GoDoc Documentation].
 
 Option parsing is the act of taking command line arguments and converting them into meaningful structures within the program.
 

@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/DavidGamba/go-getoptions"
-	"github.com/DavidGamba/go-getoptions/dag"
+	"github.com/zhizh/go-getoptions"
+	"github.com/zhizh/go-getoptions/dag"
 )
 
 var TM *dag.TaskMap
