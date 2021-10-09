@@ -1,3 +1,3 @@
-module github.com/DavidGamba/go-getoptions
+module github.com/zhizh/go-getoptions
 
 go 1.14
